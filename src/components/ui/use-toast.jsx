@@ -2,7 +2,10 @@
 import { useState, useEffect } from "react";
 
 const TOAST_LIMIT = 20;
-const TOAST_REMOVE_DELAY = 1000000;
+// How long the toast stays visible before starting the exit animation
+const AUTO_DISMISS_DELAY = 4000;
+// How long to wait after starting the exit animation before removing the element
+const TOAST_ANIM_DURATION = 300;
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -31,7 +34,7 @@ const addToRemoveQueue = (toastId) => {
       type: actionTypes.REMOVE_TOAST,
       toastId,
     });
-  }, TOAST_REMOVE_DELAY);
+  }, TOAST_ANIM_DURATION);
 
   toastTimeouts.set(toastId, timeout);
 };
@@ -134,6 +137,9 @@ function toast({ ...props }) {
     },
   });
 
+  // schedule an automatic dismiss so the toast animates out after the visible delay
+  setTimeout(() => dispatch({ type: actionTypes.DISMISS_TOAST, toastId: id }), AUTO_DISMISS_DELAY);
+
   return {
     id,
     dismiss,
@@ -157,7 +163,10 @@ function useToast() {
   return {
     ...state,
     toast,
+    // schedule a dismiss (start exit animation, removal happens later)
     dismiss: (toastId) => dispatch({ type: actionTypes.DISMISS_TOAST, toastId }),
+    // remove immediately (for close button)
+    removeNow: (toastId) => dispatch({ type: actionTypes.REMOVE_TOAST, toastId }),
   };
 }
 

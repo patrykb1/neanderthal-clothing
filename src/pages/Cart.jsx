@@ -1,33 +1,19 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '@/components/products/ProductCard';
-
-// Simple cart page stored in localStorage under 'my-app.cart.v1'
-const STORAGE_KEY = 'my-app.cart.v1';
-
-function loadCart() {
-  if (typeof window === 'undefined') return [];
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed;
-  } catch (_e) {
-    return [];
-  }
-}
+import { readCart, clearCart as clearCartStore } from '../lib/cart-store';
 
 export default function Cart() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setItems(loadCart());
+    setItems(readCart());
   }, []);
 
   function clearCart() {
     if (typeof window !== 'undefined') {
-      window.localStorage.removeItem(STORAGE_KEY);
+      clearCartStore();
       setItems([]);
     }
   }
@@ -47,13 +33,25 @@ export default function Cart() {
       ) : (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {items.map((it, idx) => (
-              <div key={idx} className="bg-[#0D0907] border border-[#2C1810] p-4 rounded-md">
-                <h3 className="text-[#A0A0A0] font-medium">{it.title}</h3>
-                <p className="text-[#ADADAD]">Qty: {it.quantity || 1}</p>
-                <p className="text-[#ADADAD]">£{(it.price || 0).toFixed(2)}</p>
-              </div>
-            ))}
+            {items.map((it, idx) => {
+              // defensive extraction of common cart fields; some items may store these under
+              // different keys depending on where they were added.
+              const size = it.selectedSize || it.size || it.options?.size || null;
+              const rawColor = it.selectedColor || it.color || it.options?.color || null;
+              const color = rawColor && typeof rawColor === 'object' ? (rawColor.name || rawColor.hex || rawColor.value) : rawColor;
+
+              return (
+                <div key={idx} className="bg-[#0D0907] border border-[#2C1810] p-4 rounded-md">
+                  <h3 className="text-[#A0A0A0] font-medium">{it.title}</h3>
+                  <p className="text-[#ADADAD]">Qty: {it.quantity || 1}</p>
+                  <p className="text-[#ADADAD]">{`\u00a3${(it.price || 0).toFixed(2)}`}</p>
+
+                  {/* Show selected attributes from the product page as plain text (non-interactive). */}
+                  {size && <p className="text-[#ADADAD]">Size: <span className="font-medium text-[#D4D4D4]">{size}</span></p>}
+                  {color && <p className="text-[#ADADAD]">Color: <span className="font-medium text-[#D4D4D4]">{color}</span></p>}
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex items-center justify-between">

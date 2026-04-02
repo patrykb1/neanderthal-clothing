@@ -7,7 +7,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Menu, X, Instagram } from 'lucide-react';
-import CartButton from './components/ui/cart-button';
+import CartDrawer from './components/ui/cart-drawer';
 import { useState } from 'react';
 
 export default function Layout({ children, currentPageName }) {
@@ -137,8 +137,8 @@ export default function Layout({ children, currentPageName }) {
                   {link.name}
                 </Link>
               ))}
-              {/* Cart button (count is static for now) */}
-              <CartButton count={0} />
+              {/* Cart drawer (opens slide-over from right) */}
+              <CartDrawer />
             </div>
 
             {/* Mobile Menu Button */}

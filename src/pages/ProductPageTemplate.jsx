@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './ProductPageDesign.css';
 import ImageSlideshow from '../components/ui/image-slideshow';
+import { addItem } from '../lib/cart-store';
+import { toast } from '../components/ui/use-toast';
 const ProductPageTemplate = ({
     title,
     description,
@@ -87,7 +89,21 @@ const ProductPageTemplate = ({
                 <button
                     onClick={() => {
                         if (selectedSize && selectedColor) {
-                            alert(`Added ${title} with size ${selectedSize} and color ${selectedColor.name} to cart!`);
+                            // add a light-weight cart item and persist
+                            addItem({
+                                slug: (typeof window !== 'undefined' && window.location.pathname) ? window.location.pathname.split('/').pop() : title,
+                                title,
+                                price,
+                                selectedSize,
+                                selectedColor,
+                                quantity: 1,
+                            });
+
+                            // non-blocking notification so UI (header badge) can update immediately
+                            toast({
+                                title: 'Added to cart',
+                                description: `${title} — ${selectedSize} / ${selectedColor.name}`,
+                            });
                         } else {
                             alert("Please select a size and color.");
                         }
