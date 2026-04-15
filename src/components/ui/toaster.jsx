@@ -13,7 +13,7 @@ export function Toaster() {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, title, description, action, duration, ...props }) {
         return (
           <Toast key={id} {...props}>
             <div className="grid gap-1">
@@ -24,6 +24,12 @@ export function Toaster() {
             </div>
             {action}
             <ToastClose onClick={() => dismiss(id)} />
+            <div className="toast-timer-track" aria-hidden="true">
+              <div
+                className="toast-timer-bar"
+                style={{ animationDuration: `${duration || 4000}ms` }}
+              />
+            </div>
           </Toast>
         );
       })}

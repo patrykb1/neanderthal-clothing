@@ -115,6 +115,7 @@ function dispatch(action) {
 
 function toast({ ...props }) {
   const id = genId();
+  const duration = Number.isFinite(props.duration) ? props.duration : AUTO_DISMISS_DELAY;
 
   const update = (props) =>
     dispatch({
@@ -130,6 +131,7 @@ function toast({ ...props }) {
     toast: {
       ...props,
       id,
+      duration,
       open: true,
       onOpenChange: (open) => {
         if (!open) dismiss();
@@ -138,7 +140,7 @@ function toast({ ...props }) {
   });
 
   // schedule an automatic dismiss so the toast animates out after the visible delay
-  setTimeout(() => dispatch({ type: actionTypes.DISMISS_TOAST, toastId: id }), AUTO_DISMISS_DELAY);
+  setTimeout(() => dispatch({ type: actionTypes.DISMISS_TOAST, toastId: id }), duration);
 
   return {
     id,

@@ -57,6 +57,23 @@ export default function Admin() {
 
   const totalProducts = catalogProducts.length;
   const totalTags = catalogProducts.reduce((count, product) => count + (product.tags?.length || 0), 0);
+  const tagSummary = useMemo(() => {
+    const counts = catalogProducts.reduce((accumulator, product) => {
+      (product.tags || []).forEach((tag) => {
+        const normalizedTag = tag.trim();
+        if (!normalizedTag) {
+          return;
+        }
+
+        accumulator[normalizedTag] = (accumulator[normalizedTag] || 0) + 1;
+      });
+      return accumulator;
+    }, {});
+
+    return Object.entries(counts)
+      .map(([tag, count]) => ({ tag, count }))
+      .sort((a, b) => a.tag.localeCompare(b.tag));
+  }, [catalogProducts]);
   const averagePrice = totalProducts
     ? catalogProducts.reduce((sum, product) => sum + Number(product.price || 0), 0) / totalProducts
     : 0;
@@ -100,6 +117,19 @@ export default function Admin() {
       ...current,
       [name]: value,
     }));
+  }
+
+  function handleRemoveTag(tagToRemove) {
+    const normalizedTag = tagToRemove.trim();
+
+    if (!normalizedTag) {
+      return;
+    }
+
+    setCatalogProducts((current) => current.map((product) => ({
+      ...product,
+      tags: (product.tags || []).filter((tag) => tag !== normalizedTag),
+    })));
   }
 
   async function handleSubmitPanel() {
@@ -291,6 +321,40 @@ export default function Admin() {
 
           {filteredProducts.length === 0 && (
             <p className="font-body text-sm text-[#8B8B8B] mt-5">No products matched your search.</p>
+          )}
+        </section>
+
+        <section className="mt-8 bg-[#141414] border border-[#2C2C2C] p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+            <div>
+              <h2 className="font-display text-2xl tracking-wider text-[#CBCBCB]">Tag inventory</h2>
+              <p className="font-body text-sm text-[#8B8B8B] mt-1">
+                Unique tags found across the catalog. Removing one clears it from every product.
+              </p>
+            </div>
+            <div className="font-body text-sm text-[#8B8B8B] uppercase tracking-[0.15em]">
+              {tagSummary.length} unique tags
+            </div>
+          </div>
+
+          {tagSummary.length > 0 ? (
+            <div className="flex flex-wrap gap-3">
+              {tagSummary.map(({ tag, count }) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => handleRemoveTag(tag)}
+                  className="group inline-flex items-center gap-2 rounded-full border border-[#3B3B3B] bg-[#0D0D0D] px-4 py-2 text-sm text-[#D4D4D4] transition-colors hover:border-[#8B8B8B] hover:text-white"
+                  title={`Remove ${tag} from all products`}
+                >
+                  <span className="font-medium">{tag}</span>
+                  <span className="text-xs text-[#8B8B8B] group-hover:text-[#D4D4D4]">{count}</span>
+                  <span className="text-xs uppercase tracking-[0.2em] text-[#A0A0A0] group-hover:text-[#FFB3B3]">Remove</span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="font-body text-sm text-[#8B8B8B]">No tags are currently assigned to any products.</p>
           )}
         </section>
 

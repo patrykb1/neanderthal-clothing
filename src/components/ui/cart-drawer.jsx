@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import { Link } from 'react-router-dom';
 import { ShoppingCart, X } from 'lucide-react';
 import { readCart, clearCart, removeItemAt } from '../../lib/cart-store';
 
 export default function CartDrawer() {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
+  const itemCount = items.reduce((count, item) => count + (item.quantity || 1), 0);
+
   function handleOpenChange(next) {
     setOpen(next);
     if (next) {
@@ -46,12 +49,12 @@ export default function CartDrawer() {
       <Dialog.Trigger asChild>
         <button
           className="relative inline-flex items-center justify-center p-2 rounded-md text-[#A0A0A0]/90 hover:text-white transition-colors"
-          aria-label={`Open cart (${items.length} items)`}
+          aria-label={`Open cart (${itemCount} items)`}
         >
           <ShoppingCart size={20} />
           {/* Always show a visible badge; show 0 when empty. Restored smaller size. */}
           <span className={`absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold leading-none text-white bg-red-600 rounded-full transition-colors ${items.length === 0 ? 'opacity-90' : 'opacity-100'}`}>
-            {items.length}
+            {itemCount}
           </span>
         </button>
       </Dialog.Trigger>
@@ -105,7 +108,13 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between text-[#ADADAD] mb-3">Total: <span className="font-medium text-[#D4D4D4]">£{total.toFixed(2)}</span></div>
             <div className="flex gap-3">
               <button onClick={handleClear} className="px-4 py-2 border border-[#3b3b3b] text-[#ADADAD] rounded-md">Clear Cart</button>
-              <button className="px-4 py-2 bg-[#A0A0A0] text-black rounded-md">Checkout</button>
+              <Link
+                to="/Checkout"
+                onClick={() => setOpen(false)}
+                className="px-4 py-2 bg-[#A0A0A0] text-black rounded-md inline-flex items-center justify-center"
+              >
+                Checkout
+              </Link>
             </div>
           </div>
 

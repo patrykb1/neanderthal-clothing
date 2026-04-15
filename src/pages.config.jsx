@@ -55,6 +55,7 @@ import PageNotFound from './lib/PageNotFound';
 import __Layout from './Layout.jsx';
 import ProductPageTemplate from './pages/ProductPageTemplate';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 
 const ContactProductPreview = () => (
     <ProductPageTemplate
@@ -73,6 +74,7 @@ export const PAGES = {
     "About": About,
     "Admin": Admin,
     "Cart": Cart,
+    "Checkout": Checkout,
     "Contact": ContactProductPreview,
 }
 

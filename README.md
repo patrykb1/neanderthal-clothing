@@ -22,7 +22,7 @@ VITE_BASE44_APP_ID=your_app_id
 VITE_BASE44_APP_BASE_URL=your_backend_url
 
 VITE_BASE44_APP_ID=69a360b5d01250f7bbc90fea
-VITE_BASE44_APP_BASE_URL=http://192.168.1.21:5173/
+VITE_BASE44_APP_BASE_URL=http://192.168.1.1611:5173/
 Use `ipconfig getifaddr en0` to find ip adress to use (macbook)
 Run the app: `npm run dev`
 Run the app on the local IP server: `npm run dev -- --host`

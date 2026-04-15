@@ -105,7 +105,11 @@ const ProductPageTemplate = ({
                                 description: `${title} — ${selectedSize} / ${selectedColor.name}`,
                             });
                         } else {
-                            alert("Please select a size and color.");
+                            toast({
+                                variant: 'warning',
+                                title: 'Selection needed',
+                                description: 'Please choose a size and color before adding this item.',
+                            });
                         }
                     }}
                     className="add-to-cart-button"

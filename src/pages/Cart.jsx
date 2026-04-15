@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from '@/components/products/ProductCard';
 import { readCart, clearCart as clearCartStore } from '../lib/cart-store';
 
 export default function Cart() {
@@ -58,7 +57,7 @@ export default function Cart() {
             <div className="text-[#ADADAD]">Total: £{total.toFixed(2)}</div>
             <div className="space-x-3">
               <button onClick={clearCart} className="px-4 py-2 border border-[#3b3b3b] text-[#ADADAD] rounded-md">Clear Cart</button>
-              <button className="px-4 py-2 bg-[#A0A0A0] text-black rounded-md">Checkout</button>
+              <Link to="/Checkout" className="inline-block px-4 py-2 bg-[#A0A0A0] text-black rounded-md">Checkout</Link>
             </div>
           </div>
         </div>
