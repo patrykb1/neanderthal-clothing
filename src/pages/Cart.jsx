@@ -43,11 +43,11 @@ export default function Cart() {
                 <div key={idx} className="bg-[#0D0907] border border-[#2C1810] p-4 rounded-md">
                   <h3 className="text-[#A0A0A0] font-medium">{it.title}</h3>
                   <p className="text-[#ADADAD]">Qty: {it.quantity || 1}</p>
-                  <p className="text-[#ADADAD]">{`\u00a3${(it.price || 0).toFixed(2)}`}</p>
+                  <p className="text-[#ADADAD]">{`\u00a3${((it.price || 0) * (it.quantity || 1)).toFixed(2)}`}</p>
 
                   {/* Show selected attributes from the product page as plain text (non-interactive). */}
                   {size && <p className="text-[#ADADAD]">Size: <span className="font-medium text-[#D4D4D4]">{size}</span></p>}
-                  {color && <p className="text-[#ADADAD]">Color: <span className="font-medium text-[#D4D4D4]">{color}</span></p>}
+                  {color && <p className="text-[#ADADAD]">Colour: <span className="font-medium text-[#D4D4D4]">{color}</span></p>}
                 </div>
               );
             })}
@@ -57,7 +57,7 @@ export default function Cart() {
             <div className="text-[#ADADAD]">Total: £{total.toFixed(2)}</div>
             <div className="space-x-3">
               <button onClick={clearCart} className="px-4 py-2 border border-[#3b3b3b] text-[#ADADAD] rounded-md">Clear Cart</button>
-              <Link to="/Checkout" className="inline-block px-4 py-2 bg-[#A0A0A0] text-black rounded-md">Checkout</Link>
+              <Link to="/Checkout" className="inline-block px-4 py-2 bg-white text-black rounded-md hover:bg-[#F2F2F2] transition">Checkout</Link>
             </div>
           </div>
         </div>

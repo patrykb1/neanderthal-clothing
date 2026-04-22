@@ -53,20 +53,9 @@ import About from './pages/About';
 import Admin from './pages/Admin';
 import PageNotFound from './lib/PageNotFound';
 import __Layout from './Layout.jsx';
-import ProductPageTemplate from './pages/ProductPageTemplate';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-
-const ContactProductPreview = () => (
-    <ProductPageTemplate
-        title="Hoodie"
-        description="This is a sample product description."
-        price={19.99}
-        images={["src/assets/hoodie.png", "src/assets/hoodie-hover.png"]}
-        features={["Very comfortable", "Made from 100% cotton", "Available in multiple colors"]}
-        sizes={["S", "M", "L", "XL", "XXL"]}
-    />
-);
+import Contact from './pages/Contact';
 
 export const PAGES = {
     "Home": Home,
@@ -75,7 +64,7 @@ export const PAGES = {
     "Admin": Admin,
     "Cart": Cart,
     "Checkout": Checkout,
-    "Contact": ContactProductPreview,
+    "Contact": Contact,
 }
 
 export const pagesConfig = {

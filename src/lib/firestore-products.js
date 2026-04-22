@@ -1,4 +1,4 @@
-import { deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, serverTimestamp, setDoc } from 'firebase/firestore';
 import { products as seedProducts } from '@/data/products';
 import { db } from '@/firebase';
 
@@ -38,6 +38,25 @@ export async function createProductItem(product) {
   };
 
   await setDoc(doc(db, PRODUCTS_COLLECTION, normalizedSlug), payload, { merge: false });
+}
+
+export async function upsertProductItem(product) {
+  const normalizedSlug = product?.slug?.trim()?.toLowerCase();
+  if (!normalizedSlug) {
+    throw new Error('Product slug is required to save a Firestore item.');
+  }
+
+  const payload = {
+    ...toFirestoreProductPayload({ ...product, slug: normalizedSlug }),
+    updatedAt: serverTimestamp(),
+  };
+
+  await setDoc(doc(db, PRODUCTS_COLLECTION, normalizedSlug), payload, { merge: true });
+}
+
+export async function listProductItems() {
+  const snapshot = await getDocs(collection(db, PRODUCTS_COLLECTION));
+  return snapshot.docs.map((item) => toFirestoreProductPayload(item.data()));
 }
 
 export async function deleteProductItem(slug) {

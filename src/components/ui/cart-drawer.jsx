@@ -89,9 +89,9 @@ export default function CartDrawer() {
                       <div>
                         <h4 className="text-[#A0A0A0] font-medium">{it.title}</h4>
                         <p className="text-[#ADADAD]">Qty: {it.quantity || 1}</p>
-                        <p className="text-[#ADADAD]">£{(it.price || 0).toFixed(2)}</p>
+                        <p className="text-[#ADADAD]">£{((it.price || 0) * (it.quantity || 1)).toFixed(2)}</p>
                         {size && <p className="text-[#ADADAD]">Size: <span className="font-medium text-[#D4D4D4]">{size}</span></p>}
-                        {color && <p className="text-[#ADADAD]">Color: <span className="font-medium text-[#D4D4D4]">{color}</span></p>}
+                        {color && <p className="text-[#ADADAD]">Colour: <span className="font-medium text-[#D4D4D4]">{color}</span></p>}
                       </div>
 
                       <div>
@@ -111,7 +111,7 @@ export default function CartDrawer() {
               <Link
                 to="/Checkout"
                 onClick={() => setOpen(false)}
-                className="px-4 py-2 bg-[#A0A0A0] text-black rounded-md inline-flex items-center justify-center"
+                className="px-4 py-2 bg-white text-black rounded-md inline-flex items-center justify-center hover:bg-[#F2F2F2] transition"
               >
                 Checkout
               </Link>
