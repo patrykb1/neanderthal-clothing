@@ -8,7 +8,33 @@ sizes: array of strings. available sizes for the product
 colors: array of strings. available colors (in hexcode) for the product
 tags: array of strings. product tags (e.g. "New", "Bestseller", "Sale")
 */
+const hoodieImages = import.meta.glob(
+    "./assets/neanderthalhoodies/*.webp",
+    {
+        eager: true,
+        query: "?url",
+        import: "default",
+    }
+);
 
+const photoImages = import.meta.glob(
+    "./assets/neanderthalphotos/*.webp",
+    {
+        eager: true,
+        query: "?url",
+        import: "default",
+    }
+);
+
+function getImage(images, filename) {
+    const path = `./${filename}`;
+
+    const matchingKey = Object.keys(images).find((key) =>
+        key.endsWith(path)
+    );
+
+    return matchingKey ? images[matchingKey] : null;
+}
 export const products = [
     {
         slug: "hoodie",
@@ -17,10 +43,10 @@ export const products = [
         description: "This is a sample product description.",
         price: 19.99,
         images: [
-            "src/assets/neanderthalhoodies/Neanderthal-Clothing-0001.jpg",
-            "src/assets/neanderthalhoodies/Neanderthal-Clothing-0012.jpg",
-            "src/assets/neanderthalhoodies/Neanderthal-Clothing-0040.jpg",
-            "src/assets/neanderthalhoodies/Neanderthal-Clothing-0045.jpg"
+            getImage(hoodieImages, "Neanderthal-Clothing-0001.webp"),
+            getImage(hoodieImages, "Neanderthal-Clothing-0012.webp"),
+            getImage(hoodieImages, "Neanderthal-Clothing-0040.webp"),
+            getImage(hoodieImages, "Neanderthal-Clothing-0045.webp"),
         ],
         features: ["Very comfortable", "Made from 100% cotton", "Available in multiple colors"],
         sizes: ["S", "M", "L", "XL", "XXL"],
@@ -45,11 +71,11 @@ export const products = [
         description: "A structured everyday cap with an adjustable fit.",
         price: 14.99,
         images: [
-            "src/assets/neanderthalphotos/Photo 29-06-2026, 11 47 17.jpg",
-            "src/assets/neanderthalphotos/Photo 29-06-2026, 11 52 32.jpg",
-            "src/assets/neanderthalphotos/Photo 29-06-2026, 11 53 59.jpg",
-            "src/assets/neanderthalphotos/Photo 29-06-2026, 11 54 59.jpg",
-            "src/assets/neanderthalphotos/Photo 29-06-2026, 12 01 35.jpg"
+            getImage(photoImages, "Photo 29-06-2026, 11 47 17.webp"),
+            getImage(photoImages, "Photo 29-06-2026, 11 52 32.webp"),
+            getImage(photoImages, "Photo 29-06-2026, 11 53 59.webp"),
+            getImage(photoImages, "Photo 29-06-2026, 11 54 59.webp"),
+            getImage(photoImages, "Photo 29-06-2026, 12 01 35.webp"),
         ],
         features: ["Adjustable fit", "Embroidered branding", "Built for everyday wear"],
         capTypes: [

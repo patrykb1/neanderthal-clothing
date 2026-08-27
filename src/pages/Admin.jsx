@@ -7,8 +7,8 @@ import { getStorage, ref, uploadBytes, getDownloadURL, listAll, deleteObject } f
 import { app } from '../firebase';
 import { normalizeHexColor } from '../lib/theme-accent';
 import { getFeaturedSlugs, toggleFeaturedSlug } from '../lib/featured-store';
-import hoodieImageSrc from '../assets/neanderthalhoodies/Neanderthal-Clothing-0001.jpg';
-import hoodieHoverImageSrc from '../assets/neanderthalhoodies/Neanderthal-Clothing-0002.jpg';
+import hoodieImageSrc from '../assets/neanderthalhoodies/Neanderthal-Clothing-0001.webp';
+import hoodieHoverImageSrc from '../assets/neanderthalhoodies/Neanderthal-Clothing-0002.webp';
 
 const INITIAL_FORM = {
   title: '',
