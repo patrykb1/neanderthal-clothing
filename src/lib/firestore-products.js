@@ -17,6 +17,8 @@ function toFirestoreProductPayload(product) {
     features: Array.isArray(product.features) ? product.features : [],
     sizes: Array.isArray(product.sizes) ? product.sizes : [],
     colors: Array.isArray(product.colors) ? product.colors : [],
+    drawstringFinishes: Array.isArray(product.drawstringFinishes) ? product.drawstringFinishes : [],
+    closures: Array.isArray(product.closures) ? product.closures : [],
     tags: Array.isArray(product.tags) ? product.tags : [],
   };
 }

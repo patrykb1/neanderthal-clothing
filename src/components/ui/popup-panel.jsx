@@ -26,10 +26,10 @@ export function PopupPanelTemplate({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="admin-panel-scrollbar border-[#2C2C2C] bg-[#141414] text-[#D4D4D4] sm:max-w-[560px] max-h-[80vh] overflow-y-auto">
+      <DialogContent className="admin-panel-scrollbar border-brand-brown bg-brand-forest text-brand-light-gray w-full max-w-full sm:max-w-[720px] max-h-[90vh] overflow-y-auto overflow-x-hidden px-4 sm:px-6">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl tracking-wider text-[#CBCBCB]">{title}</DialogTitle>
-          <DialogDescription className="font-body text-[#8B8B8B]">{description}</DialogDescription>
+          <DialogTitle className="font-display text-2xl tracking-wider text-brand-light-gray">{title}</DialogTitle>
+          <DialogDescription className="font-body text-brand-dark-gray">{description}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">{children}</div>
@@ -49,7 +49,7 @@ export function PopupPanelTemplate({
             type="button"
             onClick={onCancel}
             disabled={isSubmitting || isDestructiveSubmitting}
-            className="h-10 px-4 border border-[#2C2C2C] bg-transparent text-[#A0A0A0] font-body text-sm tracking-wide hover:text-white hover:border-[#8B8B8B] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="h-10 px-4 border border-brand-brown bg-transparent text-brand-stone font-body text-sm tracking-wide hover:text-white hover:border-brand-dark-gray transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {cancelLabel}
           </button>
@@ -57,7 +57,7 @@ export function PopupPanelTemplate({
             type="button"
             onClick={onSubmit}
             disabled={isSubmitting || isDestructiveSubmitting}
-            className="h-10 px-4 bg-[#D4D4D4] text-[#0D0D0D] font-body text-sm tracking-wide hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="h-10 px-4 bg-brand-light-gray text-brand-very-dark font-body text-sm tracking-wide hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Saving...' : submitLabel}
           </button>
@@ -71,7 +71,7 @@ export function PopupPanelField({ label, hint, children }) {
   return (
     <div className="space-y-2">
       <div>
-        <p className="font-body text-xs tracking-[0.15em] uppercase text-[#A0A0A0]">{label}</p>
+        <p className="font-body text-xs tracking-[0.15em] uppercase text-brand-stone">{label}</p>
         {hint ? <p className="font-body text-xs text-[#6F6F6F] mt-1">{hint}</p> : null}
       </div>
       {children}

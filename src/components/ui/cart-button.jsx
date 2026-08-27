@@ -9,7 +9,7 @@ export default function CartButton({ count = 0, to = '/cart', className = '' }) 
   return (
     <Link
       to={to}
-      className={`relative inline-flex items-center justify-center p-2 rounded-md text-[#A0A0A0]/90 hover:text-white transition-colors ${className}`}
+      className={`relative inline-flex items-center justify-center p-2 rounded-md text-brand-stone/90 hover:text-white transition-colors ${className}`}
       aria-label={`Open cart${count ? ` (${count} items)` : ''}`}
     >
       <ShoppingCart size={20} />

@@ -5,7 +5,8 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from "./components/ui/scroll-to-top";
-import ProductPage from "./ProductPage";
+import Hoodie from './pages/Hoodie';
+import Caps from './pages/Caps';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -49,7 +50,7 @@ const AuthenticatedApp = () => {
       {Object.entries(Pages).map(([path, Page]) => (
         <Route
           key={path}
-          path={`/${path}`}
+          path={`/${path.toLowerCase()}`}
           element={
             <LayoutWrapper currentPageName={path}>
               <Page />
@@ -57,14 +58,8 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
-       <Route
-        path="/products/:slug"
-        element={
-          <LayoutWrapper currentPageName="products">
-            <ProductPage />
-          </LayoutWrapper>
-        }
-      />
+      <Route path="/products/hoodie" element={<LayoutWrapper currentPageName="products"><Hoodie /></LayoutWrapper>} />
+      <Route path="/products/caps" element={<LayoutWrapper currentPageName="products"><Caps /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

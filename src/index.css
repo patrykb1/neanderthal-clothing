@@ -1,9 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    /* Font families */
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Theme accent colors */
+    --theme-accent: #dc143c;
+    --theme-accent-rgb: 220, 20, 60;
+    
+    /* Palette colors - Earth tones */
+    --color-earth-dark: #0D0907;
+    --color-earth-brown: #2C1810;
+    --color-forest: #161616;
+    --color-beige: #F2F2F2;
+    --color-stone: #A0A0A0;
+    --color-rust: #3b3b3b;
+    
+    /* Additional palette colors */
+    --color-light-gray: #D4D4D4;
+    --color-dark-gray: #8B8B8B;
+    --color-very-dark: #0D0D0D;
+    
+    /* Tailwind theme variables */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -139,4 +163,66 @@
 
 .admin-panel-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #777777 0%, #b5b5b5 100%);
+}
+
+/* Aesthetic helpers */
+.text-gradient {
+  background: linear-gradient(135deg, rgba(160,160,160,1) 0%, rgba(54,48,48,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-elevated {
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+  will-change: transform;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+.btn-elevated:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 34px rgba(2,6,23,0.55);
+}
+.btn-elevated:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 3px 10px rgba(2,6,23,0.4);
+}
+.btn-elevated:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 3px;
+}
+
+button:not(:disabled) {
+  transform: translateY(0) scale(1);
+  transition: transform 140ms cubic-bezier(.2,.9,.2,1), box-shadow 140ms ease, filter 140ms ease, background-color 140ms ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px) scale(1.015);
+  filter: brightness(1.08);
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px) scale(0.96);
+  filter: brightness(0.92);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+  transition-duration: 70ms;
+}
+
+button:not(:disabled):focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 3px;
+}
+
+.card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

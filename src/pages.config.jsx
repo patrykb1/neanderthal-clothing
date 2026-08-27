@@ -50,7 +50,6 @@
 import Home from './pages/Home';
 import Products from './pages/Products';
 import About from './pages/About';
-import Admin from './pages/Admin';
 import PageNotFound from './lib/PageNotFound';
 import __Layout from './Layout.jsx';
 import Cart from './pages/Cart';
@@ -61,7 +60,6 @@ export const PAGES = {
     "Home": Home,
     "Products": Products,
     "About": About,
-    "Admin": Admin,
     "Cart": Cart,
     "Checkout": Checkout,
     "Contact": Contact,

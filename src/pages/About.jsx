@@ -28,7 +28,7 @@ const values = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-[#0D0907]">
+    <div className="min-h-screen bg-brand-dark">
       {/* Hero Section */}
       <section className="relative py-20 sm:py-32 overflow-hidden">
         {/* Background Image */}
@@ -38,7 +38,7 @@ export default function About() {
             alt="Mountains"
             className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0D0907] via-[#0D0907]/80 to-[#0D0907]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-dark/80 to-brand-dark" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -47,16 +47,16 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="font-body text-sm tracking-[0.3em] text-[#8B7355] uppercase">
+            <span className="font-body text-sm tracking-[0.3em] text-brand-stone uppercase">
               Our Story
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider mt-4 text-[#D4C4A8]">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider mt-4 text-brand-beige">
               BORN FROM THE WILD
             </h1>
             <div className="flex items-center justify-center gap-4 mt-6">
-              <div className="w-12 h-px bg-[#8B7355]" />
-              <div className="w-1.5 h-1.5 bg-[#8B7355] rotate-45" />
-              <div className="w-12 h-px bg-[#8B7355]" />
+              <div className="w-12 h-px bg-brand-stone" />
+              <div className="w-1.5 h-1.5 bg-brand-stone rotate-45" />
+              <div className="w-12 h-px bg-brand-stone" />
             </div>
           </motion.div>
         </div>
@@ -73,7 +73,7 @@ We're not just creating clothing. We're building a tribe of individuals who refu
       />
 
       {/* Values Section */}
-      <section className="py-16 sm:py-24 bg-[#0D0907]">
+      <section className="py-16 sm:py-24 bg-brand-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,10 +82,10 @@ We're not just creating clothing. We're building a tribe of individuals who refu
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="font-body text-sm tracking-[0.3em] text-[#8B7355] uppercase">
+            <span className="font-body text-sm tracking-[0.3em] text-brand-stone uppercase">
               What Drives Us
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-wider mt-4 text-[#D4C4A8]">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-wider mt-4 text-brand-beige">
               OUR VALUES
             </h2>
           </motion.div>
@@ -98,15 +98,15 @@ We're not just creating clothing. We're building a tribe of individuals who refu
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-[#1A1410] border border-[#2C1810] p-8 text-center group hover:border-[#8B7355] transition-colors"
+                className="bg-brand-forest border border-brand-rust p-8 text-center group hover:border-brand-stone transition-colors"
               >
-                <div className="w-16 h-16 bg-[#2C1810] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#8B7355] transition-colors">
-                  <value.icon className="w-7 h-7 text-[#D4C4A8] group-hover:text-[#0D0907] transition-colors" />
+                <div className="w-16 h-16 bg-brand-rust rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-stone transition-colors">
+                  <value.icon className="w-7 h-7 text-brand-light-gray group-hover:text-brand-dark transition-colors" />
                 </div>
-                <h3 className="font-display text-xl tracking-wider text-[#D4C4A8] mb-3">
+                <h3 className="font-display text-xl tracking-wider text-brand-beige mb-3">
                   {value.title}
                 </h3>
-                <p className="font-body text-sm text-[#8B7355] leading-relaxed">
+                <p className="font-body text-sm text-brand-stone leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -116,14 +116,14 @@ We're not just creating clothing. We're building a tribe of individuals who refu
       </section>
 
       {/* Quote Section */}
-      <section className="py-16 sm:py-24 bg-[#1A1410] relative overflow-hidden">
+      <section className="py-16 sm:py-24 bg-brand-forest relative overflow-hidden border-y border-brand-rust">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=1920&h=600&fit=crop"
             alt="Fire"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1A1410] via-[#1A1410]/90 to-[#1A1410]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-forest via-brand-forest/90 to-brand-forest" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -133,13 +133,13 @@ We're not just creating clothing. We're building a tribe of individuals who refu
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-[#8B7355] text-7xl font-serif leading-none mb-4">"</div>
-            <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight text-[#D4C4A8]">
+            <div className="text-brand-stone text-7xl font-serif leading-none mb-4">"</div>
+            <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight text-brand-beige">
               WE DON'T FOLLOW TRENDS.
-              <span className="block mt-2 text-[#8B7355]">WE FOLLOW INSTINCTS.</span>
+              <span className="block mt-2 text-brand-stone">WE FOLLOW INSTINCTS.</span>
             </blockquote>
             <div className="mt-8">
-              <span className="font-body text-sm tracking-widest text-[#8B7355] uppercase">
+              <span className="font-body text-sm tracking-widest text-brand-stone uppercase">
                 — The Neanderthal Way
               </span>
             </div>

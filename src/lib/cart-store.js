@@ -31,7 +31,7 @@ export function writeCart(cart = []) {
 }
 
 /**
- * Add an item to the cart. If an identical item (slug + size + color) exists, increase its quantity.
+ * Add an item to the cart. If an identical item (including options) exists, increase its quantity.
  * Item should contain at least: { slug, title, price }
  */
 export function addItem(item) {
@@ -39,13 +39,10 @@ export function addItem(item) {
 
   const matchIndex = cart.findIndex((ci) => {
     const sameSlug = ci.slug === item.slug;
-    const ciSize = ci.selectedSize || ci.size || null;
-    const itSize = item.selectedSize || item.size || null;
-    const ciColor = ci.selectedColor || ci.color || null;
-    const itColor = item.selectedColor || item.color || null;
-    const sameSize = ciSize === itSize;
-    const sameColor = JSON.stringify(ciColor) === JSON.stringify(itColor);
-    return sameSlug && sameSize && sameColor;
+    const ciOptions = ci.options || {};
+    const itOptions = item.options || {};
+    const sameOptions = JSON.stringify(ciOptions) === JSON.stringify(itOptions);
+    return sameSlug && sameOptions;
   });
 
   if (matchIndex >= 0) {
@@ -70,10 +67,25 @@ export function removeItemAt(index) {
   return cart;
 }
 
+export function updateItemQuantityAt(index, quantity) {
+  const cart = readCart();
+  if (index < 0 || index >= cart.length) return cart;
+
+  const nextQuantity = Math.max(1, Number.parseInt(quantity, 10) || 1);
+  cart[index] = {
+    ...cart[index],
+    quantity: nextQuantity,
+  };
+
+  writeCart(cart);
+  return cart;
+}
+
 export default {
   readCart,
   writeCart,
   addItem,
   clearCart,
   removeItemAt,
+  updateItemQuantityAt,
 };

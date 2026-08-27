@@ -27,7 +27,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-[#1A1410] border border-[#2C1810] p-6 sm:p-8 md:p-10">
+    <div className="bg-brand-forest border border-brand-rust p-6 sm:p-8 md:p-10">
       <AnimatePresence mode="wait">
         {isSubmitted ? (
           <motion.div
@@ -37,18 +37,18 @@ export default function ContactForm() {
             exit={{ opacity: 0, scale: 0.9 }}
             className="text-center py-12"
           >
-            <div className="w-16 h-16 bg-[#1A3D2E] rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-8 h-8 text-[#D4C4A8]" />
+            <div className="w-16 h-16 bg-brand-rust rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-8 h-8 text-brand-light-gray" />
             </div>
-            <h3 className="font-display text-2xl tracking-wider text-[#D4C4A8] mb-3">
+            <h3 className="font-display text-2xl tracking-wider text-brand-beige mb-3">
               MESSAGE SENT
             </h3>
-            <p className="font-body text-[#8B7355] mb-6">
+            <p className="font-body text-brand-stone mb-6">
               Thank you for reaching out. We'll get back to you soon.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="font-body text-sm text-[#D4C4A8] underline underline-offset-4 hover:text-white transition-colors"
+              className="font-body text-sm text-brand-light-gray underline underline-offset-4 hover:text-white transition-colors"
             >
               Send another message
             </button>
@@ -63,42 +63,45 @@ export default function ContactForm() {
             className="space-y-6"
           >
             <div>
-              <label className="block font-body text-sm tracking-wider text-[#8B7355] uppercase mb-2">
+              <label htmlFor="contact-name" className="block font-body text-sm tracking-wider text-brand-stone uppercase mb-2">
                 Name
               </label>
               <Input
+                id="contact-name"
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-[#0D0907] border-[#2C1810] text-[#D4C4A8] placeholder:text-[#8B7355]/50 font-body py-6 focus:border-[#8B7355] focus:ring-[#8B7355]"
+                className="w-full bg-brand-dark border-brand-rust text-brand-beige placeholder:text-brand-stone/60 font-body py-6 focus:border-brand-stone focus:ring-brand-stone"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label className="block font-body text-sm tracking-wider text-[#8B7355] uppercase mb-2">
+              <label htmlFor="contact-email" className="block font-body text-sm tracking-wider text-brand-stone uppercase mb-2">
                 Email
               </label>
               <Input
+                id="contact-email"
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-[#0D0907] border-[#2C1810] text-[#D4C4A8] placeholder:text-[#8B7355]/50 font-body py-6 focus:border-[#8B7355] focus:ring-[#8B7355]"
+                className="w-full bg-brand-dark border-brand-rust text-brand-beige placeholder:text-brand-stone/60 font-body py-6 focus:border-brand-stone focus:ring-brand-stone"
                 placeholder="your@email.com"
               />
             </div>
 
             <div>
-              <label className="block font-body text-sm tracking-wider text-[#8B7355] uppercase mb-2">
+              <label htmlFor="contact-message" className="block font-body text-sm tracking-wider text-brand-stone uppercase mb-2">
                 Message
               </label>
               <Textarea
+                id="contact-message"
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-[#0D0907] border-[#2C1810] text-[#D4C4A8] placeholder:text-[#8B7355]/50 font-body min-h-[150px] focus:border-[#8B7355] focus:ring-[#8B7355]"
+                className="w-full bg-brand-dark border-brand-rust text-brand-beige placeholder:text-brand-stone/60 font-body min-h-[150px] focus:border-brand-stone focus:ring-brand-stone"
                 placeholder="How can we help you?"
               />
             </div>
@@ -106,11 +109,11 @@ export default function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#8B7355] hover:bg-[#D4C4A8] text-[#0D0907] font-display text-lg tracking-widest uppercase py-6 transition-all duration-300 disabled:opacity-50"
+              className="w-full bg-brand-stone hover:bg-brand-beige text-brand-dark font-display text-lg tracking-widest uppercase py-6 transition-all duration-300 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-2">
-                  <div className="w-5 h-5 border-2 border-[#0D0907]/30 border-t-[#0D0907] rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-brand-dark/30 border-t-brand-dark rounded-full animate-spin" />
                   Sending...
                 </span>
               ) : (

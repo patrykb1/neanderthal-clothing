@@ -5,7 +5,7 @@ import { Instagram, Mail, MapPin } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-[#0D0907] py-12 sm:py-20">
+    <div className="min-h-screen bg-brand-dark py-12 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <motion.div
@@ -14,18 +14,18 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="font-body text-sm tracking-[0.3em] text-[#8B7355] uppercase">
+          <span className="font-body text-sm tracking-[0.3em] text-brand-stone uppercase">
             Get In Touch
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider mt-4 text-[#D4C4A8]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider mt-4 text-brand-beige">
             CONTACT US
           </h1>
           <div className="flex items-center justify-center gap-4 mt-6">
-            <div className="w-12 h-px bg-[#8B7355]" />
-            <div className="w-1.5 h-1.5 bg-[#8B7355] rotate-45" />
-            <div className="w-12 h-px bg-[#8B7355]" />
+            <div className="w-12 h-px bg-brand-stone" />
+            <div className="w-1.5 h-1.5 bg-brand-stone rotate-45" />
+            <div className="w-12 h-px bg-brand-stone" />
           </div>
-          <p className="font-body text-[#8B7355] mt-6 max-w-xl mx-auto">
+          <p className="font-body text-brand-stone mt-6 max-w-xl mx-auto">
             Have a question or want to collaborate? We'd love to hear from you. 
             Drop us a message and we'll get back to you as soon as possible.
           </p>
@@ -46,12 +46,12 @@ export default function Contact() {
                 alt="Mountains landscape"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0907] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6">
-                <h3 className="font-display text-2xl tracking-wider text-[#D4C4A8]">
+                <h3 className="font-display text-2xl tracking-wider text-brand-beige">
                   JOIN THE TRIBE
                 </h3>
-                <p className="font-body text-sm text-[#8B7355] mt-1">
+                <p className="font-body text-sm text-brand-stone mt-1">
                   Connect with fellow primal spirits
                 </p>
               </div>
@@ -64,19 +64,19 @@ export default function Contact() {
                 href="https://www.instagram.com/neanderthal_clothing_uk/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-6 bg-[#1A1410] border border-[#2C1810] hover:border-[#8B7355] transition-colors"
+                className="group flex items-start gap-4 p-6 bg-brand-forest border border-brand-rust hover:border-brand-stone transition-colors"
               >
-                <div className="w-12 h-12 bg-[#2C1810] rounded-full flex items-center justify-center group-hover:bg-[#8B7355] transition-colors">
-                  <Instagram className="w-5 h-5 text-[#D4C4A8] group-hover:text-[#0D0907] transition-colors" />
+                <div className="w-12 h-12 bg-brand-rust rounded-full flex items-center justify-center group-hover:bg-brand-stone transition-colors">
+                  <Instagram className="w-5 h-5 text-brand-light-gray group-hover:text-brand-dark transition-colors" />
                 </div>
                 <div>
-                  <h4 className="font-display text-lg tracking-wider text-[#D4C4A8]">
+                  <h4 className="font-display text-lg tracking-wider text-brand-beige">
                     INSTAGRAM
                   </h4>
-                  <p className="font-body text-[#8B7355] group-hover:text-[#D4C4A8] transition-colors">
+                  <p className="font-body text-brand-stone group-hover:text-brand-beige transition-colors">
                     @neanderthal_clothing_uk
                   </p>
-                  <p className="font-body text-sm text-[#8B7355]/60 mt-1">
+                  <p className="font-body text-sm text-brand-stone/70 mt-1">
                     Follow us for the latest drops and primal content
                   </p>
                 </div>
@@ -85,37 +85,37 @@ export default function Contact() {
               {/* Email */}
               <a
                 href="mailto:info@neanderthalclothing.uk"
-                className="group flex items-start gap-4 p-6 bg-[#1A1410] border border-[#2C1810] hover:border-[#8B7355] transition-colors"
+                className="group flex items-start gap-4 p-6 bg-brand-forest border border-brand-rust hover:border-brand-stone transition-colors"
               >
-                <div className="w-12 h-12 bg-[#2C1810] rounded-full flex items-center justify-center group-hover:bg-[#8B7355] transition-colors">
-                  <Mail className="w-5 h-5 text-[#D4C4A8] group-hover:text-[#0D0907] transition-colors" />
+                <div className="w-12 h-12 bg-brand-rust rounded-full flex items-center justify-center group-hover:bg-brand-stone transition-colors">
+                  <Mail className="w-5 h-5 text-brand-light-gray group-hover:text-brand-dark transition-colors" />
                 </div>
                 <div>
-                  <h4 className="font-display text-lg tracking-wider text-[#D4C4A8]">
+                  <h4 className="font-display text-lg tracking-wider text-brand-beige">
                     EMAIL
                   </h4>
-                  <p className="font-body text-[#8B7355] group-hover:text-[#D4C4A8] transition-colors">
+                  <p className="font-body text-brand-stone group-hover:text-brand-beige transition-colors">
                     info@neanderthalclothing.uk
                   </p>
-                  <p className="font-body text-sm text-[#8B7355]/60 mt-1">
+                  <p className="font-body text-sm text-brand-stone/70 mt-1">
                     For inquiries and collaborations
                   </p>
                 </div>
               </a>
 
               {/* Location */}
-              <div className="flex items-start gap-4 p-6 bg-[#1A1410] border border-[#2C1810]">
-                <div className="w-12 h-12 bg-[#2C1810] rounded-full flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-[#D4C4A8]" />
+              <div className="flex items-start gap-4 p-6 bg-brand-forest border border-brand-rust">
+                <div className="w-12 h-12 bg-brand-rust rounded-full flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-brand-light-gray" />
                 </div>
                 <div>
-                  <h4 className="font-display text-lg tracking-wider text-[#D4C4A8]">
+                  <h4 className="font-display text-lg tracking-wider text-brand-beige">
                     LOCATION
                   </h4>
-                  <p className="font-body text-[#8B7355]">
+                  <p className="font-body text-brand-stone">
                     United Kingdom
                   </p>
-                  <p className="font-body text-sm text-[#8B7355]/60 mt-1">
+                  <p className="font-body text-sm text-brand-stone/70 mt-1">
                     Shipping worldwide
                   </p>
                 </div>
@@ -130,10 +130,10 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="mb-6">
-              <h3 className="font-display text-2xl tracking-wider text-[#D4C4A8]">
+              <h3 className="font-display text-2xl tracking-wider text-brand-beige">
                 SEND A MESSAGE
               </h3>
-              <p className="font-body text-sm text-[#8B7355] mt-2">
+              <p className="font-body text-sm text-brand-stone mt-2">
                 Fill out the form below and we'll respond within 24-48 hours.
               </p>
             </div>

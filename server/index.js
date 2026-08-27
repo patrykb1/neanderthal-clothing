@@ -73,6 +73,14 @@ function toStripeLineItem(item) {
       product_data: {
         name: baseName,
         description: details.join(' - ').slice(0, 500) || undefined,
+        // attempt to include an image for Stripe Checkout (absolute URL required)
+        images: (() => {
+          const candidate = (item && (item.images && item.images[0])) || item?.image || null;
+          if (!candidate) return undefined;
+          if (/^https?:\/\//i.test(candidate)) return [candidate];
+          if (frontendUrl) return [`${String(frontendUrl).replace(/\/$/, '')}/${String(candidate).replace(/^\//, '')}`];
+          return undefined;
+        })(),
         metadata: {
           slug: String(item?.slug || ''),
           size: String(size || ''),
@@ -114,20 +122,32 @@ app.post('/api/create-checkout-session', async (req, res) => {
     const lineItems = items.map(toStripeLineItem);
     const shippingAmount = Math.max(0, Math.round(Number(shipping || 0) * 100));
 
+    const shippingOptions = [];
     if (shippingAmount > 0) {
-      lineItems.push({
-        price_data: {
-          currency: 'gbp',
-          unit_amount: shippingAmount,
-          product_data: {
-            name: shippingMethod === 'express' ? 'Express shipping' : 'Standard shipping',
+      const isExpress = shippingMethod === 'express';
+      shippingOptions.push({
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: {
+            amount: shippingAmount,
+            currency: 'gbp',
+          },
+          display_name: isExpress ? 'Express shipping' : 'Standard shipping',
+          delivery_estimate: {
+            minimum: {
+              unit: 'business_day',
+              value: isExpress ? 1 : 3,
+            },
+            maximum: {
+              unit: 'business_day',
+              value: isExpress ? 2 : 5,
+            },
           },
         },
-        quantity: 1,
       });
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const sessionConfig = {
       mode: 'payment',
       line_items: lineItems,
       success_url: `${frontendUrl}/Checkout?payment=success&session_id={CHECKOUT_SESSION_ID}`,
@@ -144,7 +164,16 @@ app.post('/api/create-checkout-session', async (req, res) => {
         country: country || '',
         notes: notes || '',
       },
-    });
+    };
+
+    if (shippingOptions.length > 0) {
+      sessionConfig.shipping_address_collection = {
+        allowed_countries: ['GB', 'US', 'IE', 'CA', 'AU'],
+      };
+      sessionConfig.shipping_options = shippingOptions;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     return res.json({ sessionId: session.id });
   } catch (error) {
@@ -155,6 +184,37 @@ app.post('/api/create-checkout-session', async (req, res) => {
 
 app.get('/health', (_req, res) => {
   res.json({ ok: true });
+});
+
+// Admin authentication endpoints (server-side)
+app.post('/api/admin-login', (req, res) => {
+  const password = req.body && req.body.password;
+  if (!process.env.ADMIN_PASSWORD) {
+    return res.status(500).json({ error: 'ADMIN_PASSWORD is not configured on the server' });
+  }
+
+  if (password === process.env.ADMIN_PASSWORD) {
+    res.cookie('admin-auth', 'true', {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    });
+    return res.json({ ok: true });
+  }
+
+  return res.status(401).json({ error: 'Invalid password' });
+});
+
+app.post('/api/admin-logout', (_req, res) => {
+  res.cookie('admin-auth', '', { httpOnly: true, maxAge: 0 });
+  return res.json({ ok: true });
+});
+
+app.get('/api/admin-check', (req, res) => {
+  const cookieHeader = req.headers && req.headers.cookie;
+  const authenticated = Boolean(cookieHeader && cookieHeader.includes('admin-auth=true'));
+  return res.json({ authenticated });
 });
 
 app.listen(port, () => {

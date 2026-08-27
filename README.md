@@ -1,83 +1,40 @@
-Welcome to your Base44 project.
+# Neanderthal Clothing
 
-## About
+A React-based e-commerce website for a clothing brand, allowing customers to browse products, customise items, add them to a cart, and proceed to checkout.
 
-View and edit your app on [Base44.com](http://Base44.com).
+## Features
 
-This project contains everything you need to run your app locally.
+- Browse clothing products
+- Product customisation options
+- Product images and colour variations
+- Shopping cart
+- Add, remove and update item quantities
+- Automatic cart total calculation
+- Checkout page
+- Responsive design for desktop and mobile
+- UK delivery address lookup
 
-## Prerequisites
+## Technologies
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies:
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- JavaScript
+- GitHub Pages
 
-```bash
-npm install
-```
+## Getting Started
 
-## Environment Variables
+### Prerequisites
 
-Create a local env file at `.env.local` in the project root.
+You will need:
 
-Frontend variables (safe for browser):
+- Node.js
+- npm
 
-```env
-VITE_BASE44_APP_ID=69a360b5d01250f7bbc90fea
-VITE_BASE44_APP_BASE_URL=http://192.168.1.161:5173/
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key
-VITE_API_BASE_URL=http://localhost:4242
-```
+### Installation
 
-Backend variables (do not put these in frontend code):
-
-```env
-STRIPE_SECRET_KEY=sk_test_your_secret_key
-FRONTEND_URL=http://localhost:5173
-PORT=4242
-```
-
-You can keep backend variables in `.env.local` for local development because they are only read by `server/index.js` on the Node server.
-
-## Run Locally
-
-Run the frontend:
+Clone the repository:
 
 ```bash
-npm run dev
-```
-
-Run the Stripe backend endpoint in a second terminal:
-
-```bash
-npm run dev:server
-```
-
-Run frontend on local IP (if needed):
-
-```bash
-npm run dev -- --host
-```
-
-## Stripe Checkout
-
-The checkout page posts order data to `POST /api/create-checkout-session` on the local server, then redirects the user to Stripe Checkout.
-
-API server file:
-
-- `server/index.js`
-
-## Publish Changes
-
-Open [Base44.com](http://Base44.com) and click Publish.
-
-## Docs and Support
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
-
-## Colour Scheme From Logo
-
-- `#161616` Dull Black
-- `#3b3b3b` Rich Grey
+git clone YOUR_REPOSITORY_URL

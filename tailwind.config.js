@@ -4,12 +4,30 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+  		fontFamily: {
+  			display: 'var(--font-display)',
+  			body: 'var(--font-body)',
+  			sans: 'var(--font-body)',
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			/* Brand palette */
+  			'brand': {
+  				'dark': 'var(--color-earth-dark)',
+  				'brown': 'var(--color-earth-brown)',
+  				'forest': 'var(--color-forest)',
+  				'beige': 'var(--color-beige)',
+  				'stone': 'var(--color-stone)',
+  				'rust': 'var(--color-rust)',
+  				'light-gray': 'var(--color-light-gray)',
+  				'dark-gray': 'var(--color-dark-gray)',
+  				'very-dark': 'var(--color-very-dark)',
+  			},
+  			/* Tailwind components */
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
