@@ -9,7 +9,7 @@ colors: array of strings. available colors (in hexcode) for the product
 tags: array of strings. product tags (e.g. "New", "Bestseller", "Sale")
 */
 const hoodieImages = import.meta.glob(
-    "./assets/neanderthalhoodies/*.webp",
+    "../assets/neanderthalhoodies/*.webp",
     {
         eager: true,
         query: "?url",
@@ -18,7 +18,7 @@ const hoodieImages = import.meta.glob(
 );
 
 const photoImages = import.meta.glob(
-    "./assets/neanderthalphotos/*.webp",
+    "../assets/neanderthalphotos/*.webp",
     {
         eager: true,
         query: "?url",
@@ -27,13 +27,17 @@ const photoImages = import.meta.glob(
 );
 
 function getImage(images, filename) {
-    const path = `./${filename}`;
-
-    const matchingKey = Object.keys(images).find((key) =>
-        key.endsWith(path)
+    const key = Object.keys(images).find(
+        (key) => key.endsWith(`/${filename}`)
     );
 
-    return matchingKey ? images[matchingKey] : null;
+    if (!key) {
+        console.error("Image not found:", filename);
+        console.log("Available images:", Object.keys(images));
+        return null;
+    }
+
+    return images[key];
 }
 export const products = [
     {
@@ -91,3 +95,4 @@ export const products = [
         tags: ["New"],
     },
 ];
+console.log("PRODUCTS:", products);

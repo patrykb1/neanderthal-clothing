@@ -4,7 +4,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { readCart, removeItemAt, updateItemQuantityAt } from '../lib/cart-store';
 import { formatCartOption } from '../lib/cart-formatting';
 import { readProducts } from '../lib/products-store';
-import { listProductItems } from '../lib/firestore-products';
 import { toast } from '@/components/ui/use-toast';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
@@ -186,35 +185,7 @@ function validateCartItems(items, products) {
       addIssue(index, `${itemLabel}: quantity is invalid.`);
     }
 
-    const selectedSize = getItemSize(item);
-    const allowedSizes = (product.sizes || []).map((size) => normalizeValue(size)).filter(Boolean);
-    if (allowedSizes.length > 0 && !selectedSize) {
-      addIssue(index, `${itemLabel}: size is required.`);
-    }
-    if (selectedSize && !allowedSizes.includes(normalizeValue(selectedSize))) {
-      addIssue(index, `${itemLabel}: selected size "${selectedSize}" is not available.`);
-    }
-
-    const selectedColor = getItemColor(item);
-    const availableColors = getProductColorSet(product);
-    const selectedColorValues = [
-      normalizeValue(selectedColor?.name),
-      normalizeValue(selectedColor?.hex),
-      normalizeValue(selectedColor?.value),
-    ].filter(Boolean);
-
-    if (availableColors.size > 0 && selectedColorValues.length === 0) {
-      addIssue(index, `${itemLabel}: colour is required.`);
-    }
-
-    if (
-      selectedColorValues.length > 0 &&
-      availableColors.size > 0 &&
-      !selectedColorValues.some((value) => availableColors.has(value))
-    ) {
-      const chosenColour = selectedColor?.name || selectedColor?.hex || selectedColor?.value || 'unknown';
-      addIssue(index, `${itemLabel}: selected colour "${chosenColour}" is not available.`);
-    }
+    
   });
 
   return {
@@ -358,14 +329,6 @@ export default function Checkout() {
     
     try {
       let products = readProducts();
-      try {
-        const firestoreProducts = await listProductItems();
-        if (firestoreProducts.length > 0) {
-          products = firestoreProducts;
-        }
-      } catch (_error) {
-        // Keep local products fallback when Firestore is unavailable.
-      }
 
       const validationResult = validateCartItems(items, products);
       if (validationResult.errors.length > 0) {
