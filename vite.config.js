@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  base:'/neanderthal-clothing/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
