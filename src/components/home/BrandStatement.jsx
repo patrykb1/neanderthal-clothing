@@ -20,8 +20,8 @@ export default function BrandStatement() {
           <div className="text-brand-dark-gray text-8xl font-serif leading-none mb-4">"</div>
           
           <blockquote className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide leading-tight text-brand-stone">
-            INSERT CATCHPHRASE 
-            <span className="block text-brand-dark-gray">HERE</span>
+            NEANDERTHAL
+            <span className="block text-brand-dark-gray">NATURAL. RAW. POWER</span>
           </blockquote>
 
           <div className="flex items-center justify-center gap-4 mt-12">

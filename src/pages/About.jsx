@@ -34,7 +34,7 @@ export default function About() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=1080&fit=crop"
+            src="/assets/patterns/NEANDERTHAL BACKGROUNDgrey.webp?v=2"
             alt="Mountains"
             className="w-full h-full object-cover opacity-30"
           />
@@ -65,11 +65,11 @@ export default function About() {
       {/* Story Section */}
       <SubBrandDescription
         title="NATURAL RAW POWER"
-        description={`Neanderthal Clothing was born in the heart of the UK, inspired by our ancestors who thrived in the harshest conditions. We believe that deep within every person lies a primal instinct—a raw, untamed spirit waiting to be unleashed.
+        description={`We create clothing built to last, crafted with eco-minded responsibility and a commitment to quality that rejects the throwaway culture of modern consumerism. Our garments are made to be worn hard, cared for, and lived in, becoming part of the journey, rather than disposable trends.
 
-Our designs strip away the unnecessary, leaving only what matters: strength, durability, and authentic style. Each piece tells a story of survival, resilience, and the unbreakable human spirit.
+We champion effort over shortcuts, discipline over convenience, and the relentless pursuit of ones true physical and mental potential. Strength is earned, not bought – and our brand stands for those who choose the long road.
 
-We're not just creating clothing. We're building a tribe of individuals who refuse to conform, who embrace their raw power, and who understand that true style comes from within.`}
+At the heart of Neanderthal is community. We look out for each other whether its spotting a fellow lifter, sharing knowledge, or simply showing up with support when it counts. We are a tribe bound by respect, resilience, and the belief that we rise together.`}
       />
 
       {/* Values Section */}
@@ -119,7 +119,7 @@ We're not just creating clothing. We're building a tribe of individuals who refu
       <section className="py-16 sm:py-24 bg-brand-forest relative overflow-hidden border-y border-brand-rust">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=1920&h=600&fit=crop"
+            src="/assets/patterns/NEANDERTHAL BACKGROUNDgrey.webp?v=2"
             alt="Fire"
             className="w-full h-full object-cover opacity-20"
           />
@@ -135,12 +135,12 @@ We're not just creating clothing. We're building a tribe of individuals who refu
           >
             <div className="text-brand-stone text-7xl font-serif leading-none mb-4">"</div>
             <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight text-brand-beige">
-              WE DON'T FOLLOW TRENDS.
-              <span className="block mt-2 text-brand-stone">WE FOLLOW INSTINCTS.</span>
+              NEANDERTHAL
+              <span className="block mt-2 text-brand-stone">NATURAL. RAW. POWER.</span>
             </blockquote>
             <div className="mt-8">
               <span className="font-body text-sm tracking-widest text-brand-stone uppercase">
-                — The Neanderthal Way
+                NOT JUST A SLOGAN - OUR WAY OF LIFE
               </span>
             </div>
           </motion.div>

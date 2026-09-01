@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-
+import React from "react";
+import background from "../../assets/patterns/NEANDERTHAL BACKGROUNDgrey.webp";
 export function SubBrandDescription({title, description}) {
   return (
   <section className="py-16 sm:py-24 bg-brand-forest border-y border-brand-rust">
@@ -13,7 +14,7 @@ export function SubBrandDescription({title, description}) {
             >
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=800&fit=crop"
+                  src={background}
                   alt="Forest"
                   className="w-full h-auto"
                 />

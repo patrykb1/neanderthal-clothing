@@ -85,4 +85,25 @@ function releaseObjectUrl(key) {
   }
 }
 
-export { getObjectUrlForKey, fetchAndCache, getBlob, putBlob, releaseObjectUrl };
+async function clearImageCache() {
+  try {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.clear();
+      
+      req.onsuccess = () => {
+        inMemoryUrlMap.forEach((url) => URL.revokeObjectURL(url));
+        inMemoryUrlMap.clear();
+        resolve(true);
+      };
+      req.onerror = () => reject(req.error);
+    });
+  } catch (_e) {
+    console.error('Failed to clear image cache:', _e);
+    return false;
+  }
+}
+
+export { getObjectUrlForKey, fetchAndCache, getBlob, putBlob, releaseObjectUrl, clearImageCache };

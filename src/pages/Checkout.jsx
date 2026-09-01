@@ -185,7 +185,7 @@ function validateCartItems(items, products) {
       addIssue(index, `${itemLabel}: quantity is invalid.`);
     }
 
-    
+     
   });
 
   return {
